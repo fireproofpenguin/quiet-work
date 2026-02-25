@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://blipltc55xuew"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_oe3vx"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_etyb6"]
+
+[node name="PlayerController" type="CharacterBody3D" unique_id=1747120743]
+
+[node name="PlaceholderMesh" type="MeshInstance3D" parent="." unique_id=1359823998]
+mesh = SubResource("CapsuleMesh_oe3vx")
+
+[node name="StandingCollision" type="CollisionShape3D" parent="." unique_id=1923840112]
+shape = SubResource("CapsuleShape3D_etyb6")
+
+[node name="CameraController" type="Node3D" parent="." unique_id=2119335172]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraController" unique_id=483985232]

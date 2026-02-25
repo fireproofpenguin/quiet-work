@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://g35pworj5h58" path="res://scenes/environment/WorldEnvironment.tscn" id="1_0vqeo"]
 [ext_resource type="Material" uid="uid://0ksbpb4pswhe" path="res://materials/prototype_floor.tres" id="1_f7yxy"]
 [ext_resource type="Texture2D" uid="uid://cne3et75li64e" path="res://assets/textures/kenney_prototype-textures/PNG/Orange/texture_02.png" id="2_pdryj"]
+[ext_resource type="PackedScene" uid="uid://blipltc55xuew" path="res://scenes/player/PlayerController.tscn" id="4_1nyb5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pdryj"]
 size = Vector3(10, 1, 10)
@@ -46,3 +47,6 @@ mesh = SubResource("BoxMesh_qsqu8")
 shape = SubResource("BoxShape3D_m2vnp")
 
 [node name="WorldEnvironment" parent="." unique_id=1377929676 instance=ExtResource("1_0vqeo")]
+
+[node name="PlayerController" parent="." unique_id=1747120743 instance=ExtResource("4_1nyb5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
