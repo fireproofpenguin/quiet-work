@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://c5adk47jrxegv"]
+
+[ext_resource type="PackedScene" uid="uid://g35pworj5h58" path="res://scenes/environment/WorldEnvironment.tscn" id="1_0vqeo"]
+[ext_resource type="Material" uid="uid://0ksbpb4pswhe" path="res://materials/prototype_floor.tres" id="1_f7yxy"]
+[ext_resource type="Texture2D" uid="uid://cne3et75li64e" path="res://assets/textures/kenney_prototype-textures/PNG/Orange/texture_02.png" id="2_pdryj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pdryj"]
+size = Vector3(10, 1, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1nyb5"]
+material = ExtResource("1_f7yxy")
+size = Vector3(10, 1, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1nyb5"]
+albedo_texture = ExtResource("2_pdryj")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_qsqu8"]
+material = SubResource("StandardMaterial3D_1nyb5")
+size = Vector3(2, 0.1, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m2vnp"]
+size = Vector3(2, 0.1, 3)
+
+[node name="PrototypeLevel" type="Node3D" unique_id=2011922802]
+
+[node name="Geometry" type="Node3D" parent="." unique_id=1195087385]
+
+[node name="Floor" type="StaticBody3D" parent="Geometry" unique_id=859518652]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Geometry/Floor" unique_id=1760425041]
+shape = SubResource("BoxShape3D_pdryj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Geometry/Floor" unique_id=713308623]
+mesh = SubResource("BoxMesh_1nyb5")
+
+[node name="CrouchCheck" type="StaticBody3D" parent="Geometry" unique_id=691238409]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5496354, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Geometry/CrouchCheck" unique_id=1926673439]
+mesh = SubResource("BoxMesh_qsqu8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Geometry/CrouchCheck" unique_id=1886741918]
+shape = SubResource("BoxShape3D_m2vnp")
+
+[node name="WorldEnvironment" parent="." unique_id=1377929676 instance=ExtResource("1_0vqeo")]
