@@ -49,4 +49,4 @@ shape = SubResource("BoxShape3D_m2vnp")
 [node name="WorldEnvironment" parent="." unique_id=1377929676 instance=ExtResource("1_0vqeo")]
 
 [node name="PlayerController" parent="." unique_id=1747120743 instance=ExtResource("4_1nyb5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
