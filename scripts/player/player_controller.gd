@@ -1,14 +1,25 @@
 class_name PlayerController extends CharacterBody3D
 
-@export_category("Player settings")
-@export var acceleration: float = 2.0
-@export var deceleration: float = 1.0
-@export var speed: float = 5.0
+@export_category("References")
+@export var camera: CameraController
+@export var state_chart: StateChart
+@export var standing_collision: CollisionShape3D
+@export_category("Movement Settings")
+@export_group("Easing")
+@export var acceleration: float = 0.2
+@export var deceleration: float = 0.5
+@export_group("Speed")
+@export var default_speed: float = 7.0
+@export var sprint_speed: float = 3.0
 #const SPEED = 5.0
 #const JUMP_VELOCITY = 4.5
 
+var current_state: PlayerState
+
 var _input_dir: Vector2 = Vector2.ZERO
 var _movement_velocity: Vector3 = Vector3.ZERO
+var sprint_modifier: float = 0.0
+var speed: float = 0.0
 
 func _unhandled_key_input(event):
 	if event.is_action("debug_quit"):
@@ -18,6 +29,9 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+		
+	var speed_modifier = sprint_modifier
+	speed = default_speed + speed_modifier
 #
 	## Handle jump.
 	#if Input.is_action_just_pressed("ui_accept") and is_on_floor():
@@ -42,3 +56,9 @@ func _physics_process(delta):
 
 func update_rotation(rotation_input: Vector3) -> void:
 	global_transform.basis = Basis.from_euler(rotation_input)
+
+func sprint() -> void:
+	sprint_modifier = sprint_speed
+	
+func walk() -> void:
+	sprint_modifier = 0.0

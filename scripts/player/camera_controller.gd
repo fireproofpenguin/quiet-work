@@ -3,6 +3,7 @@ class_name CameraController extends Node3D
 @export var debug: bool = false
 @export_category("References")
 @export var player_controller: PlayerController
+@export var test_controller: TestController
 @export var component_mouse_capture: MouseCaptureComponent
 @export_category("Camera Settings")
 @export_group("Tilt")
@@ -31,5 +32,6 @@ func update_camera_rotation(input: Vector2) -> void:
 	
 	transform.basis = Basis.from_euler(_camera_rotation)
 	player_controller.update_rotation(_player_rotation)
+	#test_controller.update_rotation(_player_rotation)
 	
 	rotation.z = 0.0

@@ -19,6 +19,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _ready() -> void:
 	Input.mouse_mode = current_mouse_mode
+	#pass
 	
 func _process(_delta) -> void:
 	_mouse_input = Vector2.ZERO
