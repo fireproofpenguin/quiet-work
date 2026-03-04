@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="quiet-work"
-run/main_scene="uid://c5adk47jrxegv"
+run/main_scene="uid://jeqryitqifjd"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

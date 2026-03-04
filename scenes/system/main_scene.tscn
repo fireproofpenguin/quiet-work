@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://jeqryitqifjd"]
+
+[ext_resource type="PackedScene" uid="uid://c5adk47jrxegv" path="res://levels/prototype.tscn" id="1_mgb3u"]
+[ext_resource type="PackedScene" uid="uid://1xrujx3jalpe" path="res://scenes/system/user_interface.tscn" id="1_rtgv3"]
+
+[node name="MainScene" type="Node" unique_id=1216030792]
+
+[node name="Managers" type="Node" parent="." unique_id=929743153]
+
+[node name="CurrentLevel" type="Node3D" parent="." unique_id=1898801701]
+
+[node name="PrototypeLevel" parent="CurrentLevel" unique_id=2011922802 instance=ExtResource("1_mgb3u")]
+
+[node name="UserInterface" parent="." unique_id=948110842 instance=ExtResource("1_rtgv3")]
