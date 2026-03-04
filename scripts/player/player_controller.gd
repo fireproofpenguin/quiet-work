@@ -4,6 +4,8 @@ class_name PlayerController extends CharacterBody3D
 @export var camera: CameraController
 @export var state_chart: StateChart
 @export var standing_collision: CollisionShape3D
+@export var crouching_collision: CollisionShape3D
+@export var crouch_check: ShapeCast3D
 @export_category("Movement Settings")
 @export_group("Easing")
 @export var acceleration: float = 0.2
@@ -11,6 +13,7 @@ class_name PlayerController extends CharacterBody3D
 @export_group("Speed")
 @export var default_speed: float = 7.0
 @export var sprint_speed: float = 3.0
+@export var crouch_speed: float = -5.0
 #const SPEED = 5.0
 #const JUMP_VELOCITY = 4.5
 
@@ -19,6 +22,7 @@ var current_state: PlayerState
 var _input_dir: Vector2 = Vector2.ZERO
 var _movement_velocity: Vector3 = Vector3.ZERO
 var sprint_modifier: float = 0.0
+var crouch_modifier: float = 0.0
 var speed: float = 0.0
 
 func _unhandled_key_input(event):
@@ -30,7 +34,7 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 		
-	var speed_modifier = sprint_modifier
+	var speed_modifier = sprint_modifier + crouch_modifier
 	speed = default_speed + speed_modifier
 #
 	## Handle jump.
@@ -62,3 +66,13 @@ func sprint() -> void:
 	
 func walk() -> void:
 	sprint_modifier = 0.0
+	
+func stand() -> void:
+	crouch_modifier = 0.0
+	standing_collision.disabled = false
+	crouching_collision.disabled = true
+	
+func crouch() -> void:
+	crouch_modifier = crouch_speed
+	standing_collision.disabled = true
+	crouching_collision.disabled = false
