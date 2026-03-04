@@ -26,10 +26,6 @@ var sprint_modifier: float = 0.0
 var crouch_modifier: float = 0.0
 var speed: float = 0.0
 
-func _unhandled_key_input(event):
-	if event.is_action("debug_quit"):
-		get_tree().quit()
-
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
