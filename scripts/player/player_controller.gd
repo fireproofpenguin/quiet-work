@@ -14,8 +14,8 @@ class_name PlayerController extends CharacterBody3D
 @export var default_speed: float = 7.0
 @export var sprint_speed: float = 3.0
 @export var crouch_speed: float = -5.0
-#const SPEED = 5.0
-#const JUMP_VELOCITY = 4.5
+@export_group("Jump Settings")
+@export var jump_velocity: float = 5.0
 
 var current_state: PlayerState
 
@@ -36,11 +36,7 @@ func _physics_process(delta):
 		
 	var speed_modifier = sprint_modifier + crouch_modifier
 	speed = default_speed + speed_modifier
-#
-	## Handle jump.
-	#if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		#velocity.y = JUMP_VELOCITY
-#
+
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	_input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
@@ -76,3 +72,9 @@ func crouch() -> void:
 	crouch_modifier = crouch_speed
 	standing_collision.disabled = true
 	crouching_collision.disabled = false
+	
+func jump() -> void:
+	## Handle jump.
+	#if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		#velocity.y = JUMP_VELOCITY
+	velocity.y += jump_velocity
